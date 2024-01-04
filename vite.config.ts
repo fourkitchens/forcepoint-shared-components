@@ -3,6 +3,8 @@ import { resolve } from 'path';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
 import { name, peerDependencies, dependencies } from './package.json';
+import svgr from "vite-plugin-svgr";
+import copy from 'rollup-plugin-copy';
 
 const formattedName = name.match(/[^/]+$/)?.[0] ?? name;
 
@@ -12,6 +14,15 @@ export default defineConfig({
     react(),
     dts({
       insertTypesEntry: true,
+    }),
+    svgr(),
+    copy({
+      targets: [
+        { src: 'src/lib/assets/css/*.css', dest: 'dist/assets/css' },
+        { src: 'src/lib/assets/fonts/*', dest: 'dist/assets/fonts' },
+        { src: 'tailwind.config.ts', dest: 'dist' },
+      ],
+      hook: 'writeBundle',
     }),
   ],
   build: {
