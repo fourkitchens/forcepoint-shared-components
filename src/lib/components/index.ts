@@ -68,3 +68,8 @@ export {
   type HeaderCta,
   type StickyHeaderProps,
 } from './02-components/sticky-header/sticky-header';
+export {
+  default as AccordionSlider,
+  type AccordionSliderItemProps,
+  type AccordionSliderProps,
+} from './02-components/slider/accordion-slider';
